@@ -4,11 +4,13 @@ public:
         int i=0;
         //基础的String用法，找到空格然后替换
         while(i<s.size()){
+            //依次从s[0]开始找空格
             if(s[i]==' '){
-                s.erase(i,1);
-                s.insert(i,"%20");
-                i+=3;
-            }else{i++;}
+                //有空格了把s[i]擦掉，比如i=2时，s[i]=' '
+                s.erase(i,1);//s = "Weare happy.",s[i]='a'
+                s.insert(i,"%20");//s = "We%20are happy.",s[i]='%'
+                i+=3;//已经替换掉掉%20三个字符肯定不用看了没有空格所以i+3，s = "We%20are happy.",s[i]='a'
+            }else{i++;}//没有空格就i+1继续找
         }
         return s;
     }
