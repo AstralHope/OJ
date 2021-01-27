@@ -1,22 +1,19 @@
 class Solution {
 public:
     int fib(int n) {
-        if(n == 0){
-            return 0;    
-        }else if(n == 1){
-            return 1;
+        int ans;
+        if(n < 2){
+            ans=n;
         }else{
-            int a,b,c;
-            a=0;b=1;c=1;
-            while(n>1){
-                c=(a+b)%1000000007;
-                a=b;
-                b=c;
-                n--;
+            int* count=new int[n+1];//创建长度为n+1的数组的写法
+            count[0]=0;
+            count[1]=1;
+            for(int i=2;i<=n;i++){//i直接在这里声明就可以了，不用在一开始声明
+                count[i]=(count[i-1]+count[i-2])%1000000007;//根据题目要求要取模防止数字过大
             }
-            return c;
+            ans=count[n];
         }
-        return 0;
+        return ans;
     }
 };
 // 写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
